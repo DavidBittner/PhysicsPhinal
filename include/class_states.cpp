@@ -27,6 +27,8 @@ State *Init::exec()
 State *Poll::exec()
 {
 
+    Machine().start();
+
     glfwPollEvents();
 
     if( !glfwWindowShouldClose( glfwGetCurrentContext() ) )
@@ -62,6 +64,8 @@ State *Render::exec()
     objController.draw();
 
     glfwSwapBuffers( glfwGetCurrentContext() );
+
+    Machine().cap();
 
     return &Engine::stPoll;
 

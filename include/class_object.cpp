@@ -66,10 +66,9 @@ void Object::move()
             Vector finalVec( 0, 0 );
             double ang = finalVec.getAngle( matter().at(i)->getPos(), matter().at(j)->getPos() );
             double dist = finalVec.getDist( matter().at(i)->getPos(), matter().at(j)->getPos() );
-            double amass = matter().at(i)->getMass();
-            double bmass = matter().at(j)->getMass();
+            double mass = matter().at(j)->getMass();
 
-            finalVec.mag = (G*amass*bmass)/pow( dist, 2 );
+            finalVec.mag = ((G*mass)/pow( dist, 2 ))*((1/60.0)*TIME_STEP);
             finalVec.ang = ang;
 
             matter().at(i)->attract( finalVec );

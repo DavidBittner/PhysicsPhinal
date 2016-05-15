@@ -34,6 +34,14 @@ class Engine
 
         static void glReshape( GLFWwindow *wind, int width, int height );
 
+        void start();
+        void cap();
+
+    private:
+        int st;
+        int en;
+        const int FRAMES_PER_SECOND = 60;
+
 };
 
 Engine &Machine();

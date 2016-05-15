@@ -1,3 +1,6 @@
+#include <thread>
+#include <chrono>
+
 #include "class_engine.h"
 
 Init Engine::stInit;
@@ -53,7 +56,35 @@ void Engine::glReshape( GLFWwindow *wind, int width, int height )
 void Engine::runInits()
 {
 
-    static Body testPlanet( Coord( 0, 0 ), 10, 100000 );
-    static Body testPlanet2( Coord( 100, 100 ), 10, 10 );
+    static Body testPlanet( Coord( 0, 0 ), 10, 1000000000 );
+    static Body testPlanet2( Coord( 100, 100 ), 10, 1 );
+
+}
+
+void Engine::start()
+{
+
+    int st = glfwGetTime();
+
+    if( st == -1 )
+    {
+        
+        st = 0;
+
+    }
+
+}
+
+void Engine::cap()
+{
+
+    int en = glfwGetTime();
+
+    if( en-st < 1000.0/FRAMES_PER_SECOND )
+    {
+
+        std::this_thread::sleep_for( std::chrono::milliseconds( (int)((1000.0/FRAMES_PER_SECOND)-(en-st)) ) );
+
+    }
 
 }
