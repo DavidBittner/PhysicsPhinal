@@ -50,37 +50,41 @@ void Object::attract( Vector atr )
 void Object::move()
 {
 
-    for( unsigned i = 0; i < matter().size(); i++ )
+    for( int i = 0; i < TIME_STEP; i++ )
     {
-
-        for( unsigned j = 0; j < matter().size(); j++ )
+        for( unsigned i = 0; i < matter().size(); i++ )
         {
 
-            if( i == j )
+            for( unsigned j = 0; j < matter().size(); j++ )
             {
 
-                continue;
+                if( i == j )
+                {
+
+                    continue;
+
+                }
+
+                Vector finalVec( 0, 0 );
+                double ang = finalVec.getAngle( matter().at(i)->getPos(), matter().at(j)->getPos() );
+                double dist = finalVec.getDist( matter().at(i)->getPos(), matter().at(j)->getPos() );
+                double mass = matter().at(j)->getMass();
+
+                finalVec.mag = ((G*mass)/pow( dist, 2 ))*50;
+                finalVec.ang = ang;
+
+                matter().at(i)->attract( finalVec );
 
             }
 
-            Vector finalVec( 0, 0 );
-            double ang = finalVec.getAngle( matter().at(i)->getPos(), matter().at(j)->getPos() );
-            double dist = finalVec.getDist( matter().at(i)->getPos(), matter().at(j)->getPos() );
-            double mass = matter().at(j)->getMass();
-
-            finalVec.mag = ((G*mass)/pow( dist, 2 ))*((1/60.0)*TIME_STEP);
-            finalVec.ang = ang;
-
-            matter().at(i)->attract( finalVec );
-
         }
 
-    }
+        for( Object *i : matter() )
+        {
 
-    for( Object *i : matter() )
-    {
+            i->move();
 
-        i->move();
+        }
 
     }
 

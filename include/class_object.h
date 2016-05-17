@@ -32,6 +32,6 @@ class Object
         //In kilograms
         float mass;
 
-        const double TIME_STEP = 10000.0;
+        const int TIME_STEP = 100;
 
 };
