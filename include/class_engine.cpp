@@ -56,17 +56,13 @@ void Engine::glReshape( GLFWwindow *wind, int width, int height )
 void Engine::runInits()
 {
 
-    srand( time(nullptr) );
+    Body *planet =  new Body( Coord( 0, 0 ), 10, 10000000 );
+    Body *planet2 = new Body( Coord( 200, 0 ), 10, 0.05, Vector( 5*PI/4, 0.005 ) );
 
-    for( int i = 0; i < 10; i++ )
+    if( planet == nullptr || planet2 == nullptr )
     {
 
-        int xpos = (rand()%800)-400;
-        int ypos = (rand()%600)-300;
-        double mass = (rand()%100000)+1000;
-        double size = 5;
 
-        Body *planet = new Body( Coord( xpos, ypos ), size, mass );
 
     }
 

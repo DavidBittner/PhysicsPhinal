@@ -12,8 +12,12 @@ State *Init::exec()
 
     glewInit();
     glfwInit();
+
+    glfwWindowHint( GLFW_SAMPLES, 4 );
     GLFWwindow *wind = glfwCreateWindow( 800, 600, "Physics Phinal", nullptr, nullptr );
     glfwMakeContextCurrent( wind );
+
+    glfwSwapInterval( 1 );
 
     glfwSetWindowSizeCallback( wind, Machine().glReshape );
     Machine().glReshape( wind, 800, 600 );

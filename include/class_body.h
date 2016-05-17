@@ -7,6 +7,7 @@ class Body : public Object
 
     public:
         Body( Coord pos, double radius, double mass );
+        Body( Coord pos, double radius, double mass, Vector init );
 
         void move();
         void draw();

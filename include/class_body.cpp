@@ -14,6 +14,20 @@ Body::Body( Coord pos, double radius, double mass )
 
 }
 
+Body::Body( Coord pos, double radius, double mass, Vector init )
+{
+
+    this->mass = mass;
+    this->colPos.r = radius;
+
+    this->colPos.pos = pos;
+
+    movDir = init;
+
+    matter().push_back( this );
+
+}
+
 void Body::move()
 {
 
