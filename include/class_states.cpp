@@ -2,6 +2,7 @@
 #include "class_state.h"
 #include "class_engine.h"
 #include "class_body.h"
+#include "class_mouse.h"
 
 #include <iostream>
 
@@ -19,10 +20,10 @@ State *Init::exec()
 
     glfwSwapInterval( 1 );
 
-    glfwSetWindowSizeCallback( wind, Machine().glReshape );
+    glfwSetWindowSizeCallback( wind, Engine::glReshape );
+    glfwSetMouseButtonCallback( wind, Mouse::mouseClick );
+    glfwSetCursorPosCallback( wind, Mouse::mousePos );
     Machine().glReshape( wind, 800, 600 );
-
-    Machine().runInits();
 
     return &Engine::stPoll;
 
@@ -62,7 +63,11 @@ State *Render::exec()
     glClear( GL_COLOR_BUFFER_BIT );
     glLoadIdentity();
 
+    Mouse launcher;
+
     glTranslatef( 0.0f, 0.0f, -1.0f );
+
+    launcher.run();
 
     Object objController;
     objController.draw();

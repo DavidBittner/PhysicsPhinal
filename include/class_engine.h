@@ -1,6 +1,5 @@
-#include <GL/glew.h>
 #pragma once
-
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include "class_states.h"
@@ -21,9 +20,9 @@ class Engine
         void fire();
         State *getState();
 
-        void runInits();
-
     protected:
+        static Coord mousePos;
+
         static Init stInit;
         static Poll stPoll;
         static Process stProcess;

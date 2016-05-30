@@ -52,6 +52,7 @@ void Object::move()
 
     for( int i = 0; i < TIME_STEP; i++ )
     {
+        
         for( unsigned i = 0; i < matter().size(); i++ )
         {
 
@@ -70,7 +71,7 @@ void Object::move()
                 double dist = finalVec.getDist( matter().at(i)->getPos(), matter().at(j)->getPos() );
                 double mass = matter().at(j)->getMass();
 
-                finalVec.mag = ((G*mass)/pow( dist, 2 ))*50;
+                finalVec.mag = ((G*mass)/(pow( dist/1000.0, 2 )));
                 finalVec.ang = ang;
 
                 matter().at(i)->attract( finalVec );

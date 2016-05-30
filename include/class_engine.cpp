@@ -2,12 +2,15 @@
 #include <chrono>
 
 #include "class_engine.h"
+#include <GLFW/glfw3.h>
 
 Init Engine::stInit;
 Poll Engine::stPoll;
 Render Engine::stRender;
 Process Engine::stProcess;
 Terminate Engine::stTerminate;
+
+Coord Engine::mousePos;
 
 State *Engine::curState;
 
@@ -50,21 +53,6 @@ void Engine::glReshape( GLFWwindow *wind, int width, int height )
     glLoadIdentity();
     glOrtho( -width/2.0, width/2, -height/2, height/2, 1.0f, 10.0f );
     glMatrixMode( GL_MODELVIEW );
-
-}
-
-void Engine::runInits()
-{
-
-    Body *planet =  new Body( Coord( 0, 0 ), 10, 10000000 );
-    Body *planet2 = new Body( Coord( 200, 0 ), 10, 0.05, Vector( 5*PI/4, 0.005 ) );
-
-    if( planet == nullptr || planet2 == nullptr )
-    {
-
-
-
-    }
 
 }
 
