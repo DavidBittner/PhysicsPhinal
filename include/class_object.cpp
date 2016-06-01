@@ -27,6 +27,7 @@ void Object::draw()
 {
 
     glEnableClientState( GL_VERTEX_ARRAY );
+    glEnableClientState( GL_COLOR_ARRAY );
 
     for( Object *i : matter() )
     {
@@ -35,6 +36,7 @@ void Object::draw()
 
     }
 
+    glDisableClientState( GL_COLOR_ARRAY );
     glDisableClientState( GL_VERTEX_ARRAY );
 
 }

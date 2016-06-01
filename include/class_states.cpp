@@ -21,9 +21,18 @@ State *Init::exec()
     glfwSwapInterval( 1 );
 
     glfwSetWindowSizeCallback( wind, Engine::glReshape );
+
     glfwSetMouseButtonCallback( wind, Mouse::mouseClick );
     glfwSetCursorPosCallback( wind, Mouse::mousePos );
+    
+    glfwSetKeyCallback( wind, Mouse::keyFunc );
+
     Machine().glReshape( wind, 800, 600 );
+
+    Body *planet = new Body( Coord( 0, 0 ), 10, 10000000 ); 
+
+    glEnable( GL_BLEND );
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
     return &Engine::stPoll;
 
@@ -35,6 +44,8 @@ State *Poll::exec()
     Machine().start();
 
     glfwPollEvents();
+    Mouse launcher;
+    launcher.input();
 
     if( !glfwWindowShouldClose( glfwGetCurrentContext() ) )
     {
@@ -51,6 +62,9 @@ State *Process::exec()
 {
 
     Object objController;
+    Mouse launcher;
+    
+    launcher.run();
     objController.move();
 
     return &Engine::stRender;
@@ -64,12 +78,11 @@ State *Render::exec()
     glLoadIdentity();
 
     Mouse launcher;
+    Object objController;
 
     glTranslatef( 0.0f, 0.0f, -1.0f );
 
-    launcher.run();
-
-    Object objController;
+    launcher.draw();
     objController.draw();
 
     glfwSwapBuffers( glfwGetCurrentContext() );

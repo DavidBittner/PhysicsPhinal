@@ -39,7 +39,8 @@ void Body::move()
 void Body::draw()
 {
 
-    colPos.draw();
+    double color = mass/1000000.0;
+    colPos.draw( color, 0.0, 1-color, 1.0 );
 
 }
 

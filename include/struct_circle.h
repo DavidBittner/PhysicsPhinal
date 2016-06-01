@@ -10,7 +10,7 @@ struct Circle
     Circle( Coord pos, double r );
 
     bool checkCollision( Circle a );
-    void draw();
+    void draw( double rc, double gc, double bc, double ac );
 
     double r;
     Coord pos;
